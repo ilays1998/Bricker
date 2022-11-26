@@ -207,10 +207,8 @@ public class BrickerGameManager extends GameManager{
         float brickRow =  BORDER_WIDTH + DISTANSE_BETWEEN_BRICK_TO_WALL;
         float brickCol = BORDER_WIDTH + DISTANSE_BETWEEN_BRICK_TO_WALL;
         //generate columns and rows of bricks
-        for (int row = 0; row < NUM_OF_BRICK_IN_ROW; row++)
-        {
-            for (int col = 0; col < NUM_OF_BRICK_IN_COL; col++)
-            {
+        for (int row = 0; row < NUM_OF_BRICK_IN_ROW; row++) {
+            for (int col = 0; col < NUM_OF_BRICK_IN_COL; col++) {
                 newBrick(new Vector2(brickRow, brickCol),
                         new Vector2(brickWidth, BRICK_HEIGHT),
                         brickImage,  numOfBricks);
@@ -270,8 +268,7 @@ public class BrickerGameManager extends GameManager{
         float ballHeight = ball.getCenter().y();
         String prompt = "";
         //lost one life
-        if (ballHeight > windowDimensions.y())
-        {
+        if (ballHeight > windowDimensions.y()) {
             //we lost
             prompt = "You Lost!";
             livesCounter.decrement();
@@ -279,20 +276,13 @@ public class BrickerGameManager extends GameManager{
         //win the game
         if (numOfBricks.value() == 0 ||
                 inputListener.isKeyPressed('w') ||
-                inputListener.isKeyPressed('W'))
-        {
+                inputListener.isKeyPressed('W')) {
             prompt = "You Won! Play again?";
             newGame(prompt);
-        }
-        //lost the game
-        else if (livesCounter.value() == 0 && !prompt.isEmpty())
-        {
+        } else if (livesCounter.value() == 0 && !prompt.isEmpty()) {
             prompt += " Play again?";
             newGame(prompt);
-        }
-        //we loss one life by not all
-        else if (livesCounter.value() != 0 && !prompt.isEmpty())
-        {
+        } else if (livesCounter.value() != 0 && !prompt.isEmpty()) {
             ball.setCenter(windowDimensions.mult(0.5f));
         }
     }

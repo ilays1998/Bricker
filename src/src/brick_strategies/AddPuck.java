@@ -11,6 +11,9 @@ import src.gameobjects.Brick;
 
 import java.util.Random;
 
+/**
+ * represent strategy of add 3 new balls
+ */
 public class AddPuck extends RemoveBrickStrategy{
     private GameObjectCollection gameObjects;
     private Renderable ballMockImage;
@@ -20,6 +23,16 @@ public class AddPuck extends RemoveBrickStrategy{
     private Vector2 windowDimensions;
     private boolean isDoubleBehavior;
 
+    /**
+     * construct the strategy
+     * @param gameObjects append and remove object
+     * @param ballMockImage the new balls image
+     * @param collisionSound the sound of collision
+     * @param ballDimensions the dimension of the ball
+     * @param ballSpeed the speed of the ball
+     * @param windowDimensions the dimension of the game
+     * @param isDoubleBehavior indicates if the brick have more strategy
+     */
     public AddPuck(GameObjectCollection gameObjects,
                    Renderable ballMockImage, Sound collisionSound,
                    Vector2 ballDimensions, float ballSpeed, Vector2 windowDimensions,
@@ -34,6 +47,12 @@ public class AddPuck extends RemoveBrickStrategy{
         this.isDoubleBehavior = isDoubleBehavior;
     }
 
+    /**
+     * the append of the balls
+     * @param thisObj the brick
+     * @param otherObj the ball
+     * @param numOfBricks the number of bricks that exist
+     */
     @Override
     public void onCollision(GameObject thisObj, GameObject otherObj,
                             Counter numOfBricks) {

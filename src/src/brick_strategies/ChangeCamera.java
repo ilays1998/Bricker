@@ -10,12 +10,23 @@ import src.BrickerGameManager;
 import src.gameobjects.Ball;
 import src.gameobjects.Brick;
 
+/**
+ * represent strategy of change the point of view of the game
+ */
 public class ChangeCamera extends RemoveBrickStrategy {
     private BrickerGameManager brickerGameManager;
     private Ball ball;
     private WindowController windowController;
     private boolean isDoubleBehavior;
 
+    /**
+     * construct the strategy
+     * @param gameObjects append and remove objects
+     * @param brickerGameManager for get information on the game
+     * @param ball the original ball
+     * @param windowController the game dimension
+     * @param isDoubleBehavior indicates if the brick have more strategy
+     */
     public ChangeCamera(GameObjectCollection gameObjects,
                         BrickerGameManager brickerGameManager,
                         Ball ball, WindowController windowController, boolean isDoubleBehavior) {
@@ -26,9 +37,16 @@ public class ChangeCamera extends RemoveBrickStrategy {
         this.isDoubleBehavior = isDoubleBehavior;
     }
 
+    /**
+     * the change of the camera in collision
+     * @param thisObj the brick
+     * @param otherObj the ball
+     * @param numOfBricks the number of bricks that exist
+     */
     @Override
     public void onCollision(GameObject thisObj, GameObject otherObj, Counter numOfBricks) {
         super.onCollision(thisObj, otherObj, numOfBricks);
+        //also check that camera is in the original state
         if ((brickRemoved && !isDoubleBehavior) || brickerGameManager.getCamera() != null ||
             !otherObj.equals(ball))
             return;

@@ -9,7 +9,7 @@ import danogl.util.Vector2;
 import java.util.Random;
 
 /**
- *
+ *  represent ball game object of the bricker game
  */
 public class Ball extends GameObject {
 
@@ -17,11 +17,11 @@ public class Ball extends GameObject {
     private int collisionCount;
 
     /**
-     *
-     * @param topLeftCorner
-     * @param dimensions
-     * @param renderable
-     * @param collisionSound
+     * constructor for the ball
+     * @param topLeftCorner the ball place
+     * @param dimensions the ball dimension
+     * @param renderable the ball image
+     * @param collisionSound the collision sound
      */
     public Ball(Vector2 topLeftCorner, Vector2 dimensions, Renderable renderable,
                 Sound collisionSound) {
@@ -30,6 +30,11 @@ public class Ball extends GameObject {
         this.collisionCount = 0;
     }
 
+    /**
+     * the method help for classes that uses ball and want to
+     * generate it with random axis start
+     * @param ballSpeed the ball speed
+     */
     public void randomDirection(float ballSpeed) {
         float ballVelX = ballSpeed;
         float ballVelY = ballSpeed;
@@ -43,6 +48,12 @@ public class Ball extends GameObject {
         this.setVelocity(new Vector2(ballVelX, ballVelY));
     }
 
+    /**
+     * the behavior of the ball in collision - to change direction
+     * according to physical behavior
+     * @param other the object that the ball collision with
+     * @param collision see GameObject
+     */
     @Override
     public void onCollisionEnter(GameObject other, Collision collision) {
         super.onCollisionEnter(other, collision);
@@ -53,6 +64,10 @@ public class Ball extends GameObject {
 
     }
 
+    /**
+     * the method count the number of collision of the ball with some object
+     * @return the number of collision of the ball until now
+     */
     public int getCollisionCount() {
         return this.collisionCount;
     }

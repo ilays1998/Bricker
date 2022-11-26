@@ -13,7 +13,7 @@ import src.gameobjects.Ball;
 import java.util.Random;
 
 /**
- * this cl
+ * this class represent to give brick strategy to demand
  */
 public class BrickStrategyFactory {
 
@@ -37,6 +37,19 @@ public class BrickStrategyFactory {
     private Counter livesCounter;
     private int distanceFromSide;
 
+    /**
+     * construct new strategy factory
+     * @param gameObjects add and remove objects
+     * @param images the images for the strategy
+     * @param dimensions the dimension for the strategy
+     * @param collisionSound sound of collision
+     * @param brickerGameManager to get information about the game
+     * @param minDistanceFromScreenEdge the distance from wall
+     * @param ballSpeed ball speed
+     * @param ball the object original ball
+     * @param lifeSpeed the speed of the moving down life
+     * @param distanceFromSide distance from heart to heart
+     */
     public BrickStrategyFactory(GameObjectCollection gameObjects,
                                 Renderable[] images,
                                 Vector2[] dimensions,
@@ -69,6 +82,12 @@ public class BrickStrategyFactory {
         this.gameObjects = gameObjects;
     }
 
+    /**
+     * return new strategy for the brick
+     * @param isDoubleBehavior true if the brick have more special behaviors
+     * @param maxNumOfBehaviors true if the brick have 3 special behaviors
+     * @return new strategy for the brick
+     */
     public CollisionStrategy getStrategy(boolean isDoubleBehavior, boolean maxNumOfBehaviors) {
         //choose randomly between the possible brick strategies
         Random random = new Random();

@@ -1,5 +1,8 @@
 package src.brick_strategies;
 
+/**
+ * enum for control the strategy
+ */
 public enum BrickStrategy {
     REMOVE_BRICK_STRATEGY,
     DOUBLE_BEHAVIOR,

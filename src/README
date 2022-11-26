@@ -1,2 +1,103 @@
 ilaysoffer
 207446709
+
+File description:
+AddPuck
+    class that represent strategy of add 3 new balls
+AppendMoreLife
+    class that represent strategy of falling heart
+AppendPaddleTemporary
+    class that represent strategy og appending paddle temporary in the screen
+BrickStrategy
+    enum for control the strategy
+BrickStrategyFactory
+    factory for the strategy of the bricks
+ChangeCamera
+    class that represent strategy of change the point of view of the game
+CollisionStrategy
+    interface for classes that represent strategy of brick
+DoubleBehavior
+    class that represent strategy the choose 2 new strategy for the brick
+RemoveBrickStrategy
+    class that represent the strategy od remove the brick and do nothing
+RestartCameraView
+    class that responsible to restart the camera of the game to the original state
+    after number of collision of the original ball
+MoreLife
+    class that represent a object that fall from brick after collision,
+    and give the player if he catch it with the paddle more life (until 4 life)
+StatusDefiners
+    abstract class that represent a object that fall after
+    brick collision and have special behavior
+Ball
+    class that represent ball game object of the bricker game
+Brick
+    class that represent brick - game object - in the game
+GraphicLifeCounter
+    class that represent the Hearts in the side of the game that represent
+    the player's lives
+NumericLifeCounter
+    Graphic represent of the player's lives
+Paddle
+    class that represent paddle in the game that the user control
+PaddleTemporary
+    class that inheritance from paddle and represent temporary
+    paddle that disappear after number of collision with balls
+BrickerGameManager
+    the Bricker main class that run the game and responsible for
+    the parameters of the game
+
+Design:
+First, in the game objects I decide to make the PaddleTemporary class that inheritance
+from Paddle and represent the new temporary paddle, and the the new balls not to implement
+in another class, but to use the ball original class. this choice is because the new balls
+similar in the behavior to the original ball but the new paddle have many differences,
+and need more changes.
+Second, I decide to do abstract method of StatusDefiners because this abstract
+represent object that fall from brick and if we want to append behaviors like this, this
+abstract class help us and make the code more readable and simple. the MoreLife is
+inheritance of StatusDefiners and represent the heart that fall and give the user more life.
+In the brick strategies package I decide to do factory that responsible for give
+new strategy for demand. another decision is to do enum that have all the strategies.
+this abstraction is very useful, because the enum with the factory give us easy way
+to append new strategies, with minimum work, and the probability of the activate
+of the strategies change to fit this automatic because the use of the factory in the
+enum.
+Third, I decide to make all the special behavior strategies to inheritance from
+RemovedBrickStrategy - a class that represent simple strategy - remove the brick.
+this is because they share functionality - all the behaviors in the end remove
+the brick that commit them.
+In addition, I decide to make CollisionStrategy as interface for the strategies,
+that RemovedBrickStrategy implements. and this is because for now all
+the strategies used RemovedBrickStrategy but in the future it's might be that we want
+strategy that don't do that so we say the minimum that we demand from strategy to be strategy -
+implementation of CollisionStrategyMethod.
+
+Implementation issues:
+RestartCameraView is the class that you suggest to make to control the camera
+and return it, when need, to the original state.
+
+Answers to questions:
+Like I say RemovedBrickStrategy implements the simplest strategy.
+AddPuck implement the strategy of adding balls and use the original ball class
+for the new balls.
+AppendMoreLife implement the strategy of falling heart and use the MoreLife
+object that I already wrote about him.
+AppendPaddle Temporary use PaddleTemporary object for implement the adding
+temporary paddle.
+Like I wrote the factory is good solution here, and is better from the other
+option because, he give us encapsulation and if we decide instead to use class
+with all the strategy and composition the code was complex and not easy for changes,
+because all the dependency.
+The way I choose to limit the behaviors to 3 was to append new
+field in Brick, and to count with him the number of time that we activate strategy.
+the special strategies classes increase this number by use the brick that
+they get in the collision method. and in the factory I append parameter
+in the getStrategy method that say if we pass the limit (the brick activate
+the method so can pass this parameter).
+The solution for double behavior I make is to append new behavior to the factory,
+that if the brick get it, so in collision the strategy asked more 2 strategy from
+the factory (special strategy) and immediately activate the onCollision method
+of the brick on them. this give use flexible code, because if we append more
+strategies in the enum and the factory, so automatically the double behavior
+include them.

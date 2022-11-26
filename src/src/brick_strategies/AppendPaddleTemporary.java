@@ -12,6 +12,9 @@ import src.gameobjects.PaddleTemporary;
 
 import java.util.Random;
 
+/**
+ * represent appending paddle temporary in the screen
+ */
 public class AppendPaddleTemporary extends RemoveBrickStrategy{
     private Vector2 paddleDimensions;
     private Renderable paddleImage;
@@ -20,8 +23,17 @@ public class AppendPaddleTemporary extends RemoveBrickStrategy{
     private GameObjectCollection gameObjects;
     private int minDistanceFromScreenEdge;
     private boolean isDoubleBehavior;
-    private GameObject paddle;
 
+    /**
+     * construct the strategy og appending of the temporary paddle
+     * @param paddleDimensions dimension of the new paddle
+     * @param paddleImage image of new paddle
+     * @param inputListener the user input
+     * @param windowDimensions the game dimension
+     * @param gameObjects append and remove objects
+     * @param minDistanceFromScreenEdge distance from walls
+     * @param isDoubleBehavior indicates if the brick have more strategy
+     */
     public AppendPaddleTemporary(Vector2 paddleDimensions, Renderable paddleImage,
                                  UserInputListener inputListener,
                                  Vector2 windowDimensions, GameObjectCollection gameObjects,
@@ -36,6 +48,12 @@ public class AppendPaddleTemporary extends RemoveBrickStrategy{
         this.isDoubleBehavior = isDoubleBehavior;
     }
 
+    /**
+     * append the temporary paddle
+     * @param thisObj the brick
+     * @param otherObj the ball
+     * @param numOfBricks the number of the bricks exist in current time
+     */
     @Override
     public void onCollision(GameObject thisObj, GameObject otherObj, Counter numOfBricks) {
         super.onCollision(thisObj, otherObj, numOfBricks);

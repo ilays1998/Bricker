@@ -70,8 +70,7 @@ public abstract class StatusDefiners extends GameObject {
      * @return true if other is original paddle
      */
     @Override
-    public boolean shouldCollideWith(GameObject other)
-    {
+    public boolean shouldCollideWith(GameObject other) {
         return (other instanceof Paddle && !(other instanceof PaddleTemporary));
     }
 

@@ -7,6 +7,9 @@ import danogl.gui.rendering.Renderable;
 import danogl.util.Counter;
 import danogl.util.Vector2;
 
+/**
+ * represent brick - game object - in the game
+ */
 public class Brick extends GameObject {
 
     private int numOfBehaviors;
@@ -14,12 +17,12 @@ public class Brick extends GameObject {
     private Counter numOfBricks;
 
     /**
-     * Construct a new GameObject instance.
-     * @param topLeftCorner Position of the object, in window coordinates (pixels).
-     *                      Note that (0,0) is the top-left corner of the window.
-     * @param dimensions    Width and height in window coordinates.
-     * @param renderable    The renderable representing the object. Can be null, in which case
-     * @param numOfBricks
+     * constructor for the brick
+     * @param topLeftCorner the brick place
+     * @param dimensions the brick dimension
+     * @param renderable the brick image
+     * @param collisionStrategy the strategy that the brick have in collision of ball
+     * @param numOfBricks the bricks that in the game (not removed)
      */
     public Brick(Vector2 topLeftCorner, Vector2 dimensions, Renderable renderable,
                  CollisionStrategy collisionStrategy,
@@ -30,16 +33,26 @@ public class Brick extends GameObject {
         this.numOfBricks = numOfBricks;
     }
 
-    public int getNumOfBehaviors()
-    {
+    /**
+     * getter for num of special behaviors that the brick commit
+     * @return numbers of the special behaviors that commit
+     */
+    public int getNumOfBehaviors() {
         return this.numOfBehaviors;
     }
 
-    public void increaseNumOfBehaviors()
-    {
+    /**
+     * increase the number of special behaviors by 1
+     */
+    public void increaseNumOfBehaviors() {
         this.numOfBehaviors += 1;
     }
 
+    /**
+     * behavior in collision
+     * @param other the ball
+     * @param collision see GameObject
+     */
     @Override
     public void onCollisionEnter(GameObject other, Collision collision) {
         super.onCollisionEnter(other, collision);
